@@ -1,15 +1,25 @@
-# node-tty
-
-To install dependencies:
+# node-tty bug
 
 ```bash
-bun install
+bun run index.js
 ```
 
-To run:
+## Expected output
 
 ```bash
-bun run index.ts
+stdout is a TTY
 ```
 
-This project was created using `bun init` in bun v0.6.3. [Bun](https://bun.sh) is a fast all-in-one JavaScript runtime.
+## Actual output
+
+```bash
+1 | 
+2 | const tty_1 = require("tty");
+3 | 
+4 | if (process.stdout instanceof tty_1.WriteStream) {
+       ^
+TypeError: instanceof called on an object with an invalid prototype property.
+      at [YOUR_DIR]/node-tty/index.js:4:4
+      at globalThis ([YOUR_DIR]/node-tty/index.js:5:31)
+```
+
